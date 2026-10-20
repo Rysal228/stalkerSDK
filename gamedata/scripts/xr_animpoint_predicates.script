@@ -249,6 +249,13 @@ associations = {
 							{name = "animpoint_sit_low_harmonica", predicate = xr_animpoint_predicates.animpoint_predicate_harmonica},
 --							{name = "animpoint_sit_low_weapon", predicate = xr_animpoint_predicates.animpoint_predicate_weapon},
 						},
+	animpoint_sit_ass = {
+    							{name = "animpoint_sit_ass", predicate = xr_animpoint_predicates.const_predicate_true},
+						},
+
+	animpoint_sit_knee = {
+							{name = "animpoint_sit_knee", predicate = xr_animpoint_predicates.const_predicate_true},
+						},
 	walker_camp		  = {	{name = "play_guitar", predicate = xr_animpoint_predicates.animpoint_predicate_guitar},
 							{name = "play_harmonica", predicate = xr_animpoint_predicates.animpoint_predicate_harmonica}
 						},
