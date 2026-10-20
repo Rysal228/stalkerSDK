@@ -1,0 +1,3 @@
+# Не загружать текстуры игры
+/gamedata/textures/
+/gamedata/texture/
