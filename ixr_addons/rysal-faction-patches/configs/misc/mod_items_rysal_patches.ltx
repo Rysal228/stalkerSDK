@@ -1,7 +1,6 @@
 ; Separate lootable items for each faction.
-; Until the Leekos texture atlas is imported, show the vanilla PDA icon.
-; IX-Ray >= 1.3: icons_texture = ui\rysal_faction_patches
-; Then set inv_grid_x/y for each patch to the atlas cell.
+; Leekos HD Faction Patches 2.4 loot atlas, 100x100 pixel cells.
+; IX-Ray inv_scale=2 means 1 grid cell = 100 texture pixels.
 [rysal_patch_stalker]:guitar_a
 $spawn           = "rysal\faction_patches\stalker"
 visual           = dynamics\devices\dev_pda\dev_pda.ogf
@@ -10,10 +9,12 @@ inv_name_short   = rysal_patch_stalker_name
 description      = rysal_patch_stalker_desc
 inv_weight       = 0.02
 cost             = 100
+icons_texture    = ui\ui_leekos_patches
+inv_scale        = 2
 inv_grid_width   = 1
 inv_grid_height  = 1
-inv_grid_x       = 6
-inv_grid_y       = 13
+inv_grid_x       = 8
+inv_grid_y       = 0
 auto_attach      = false
 
 [rysal_patch_dolg]:guitar_a
@@ -24,10 +25,12 @@ inv_name_short   = rysal_patch_dolg_name
 description      = rysal_patch_dolg_desc
 inv_weight       = 0.02
 cost             = 100
+icons_texture    = ui\ui_leekos_patches
+inv_scale        = 2
 inv_grid_width   = 1
 inv_grid_height  = 1
-inv_grid_x       = 6
-inv_grid_y       = 13
+inv_grid_x       = 3
+inv_grid_y       = 0
 auto_attach      = false
 
 [rysal_patch_freedom]:guitar_a
@@ -38,10 +41,12 @@ inv_name_short   = rysal_patch_freedom_name
 description      = rysal_patch_freedom_desc
 inv_weight       = 0.02
 cost             = 100
+icons_texture    = ui\ui_leekos_patches
+inv_scale        = 2
 inv_grid_width   = 1
 inv_grid_height  = 1
-inv_grid_x       = 6
-inv_grid_y       = 13
+inv_grid_x       = 5
+inv_grid_y       = 0
 auto_attach      = false
 
 [rysal_patch_bandit]:guitar_a
@@ -52,10 +57,12 @@ inv_name_short   = rysal_patch_bandit_name
 description      = rysal_patch_bandit_desc
 inv_weight       = 0.02
 cost             = 100
+icons_texture    = ui\ui_leekos_patches
+inv_scale        = 2
 inv_grid_width   = 1
 inv_grid_height  = 1
-inv_grid_x       = 6
-inv_grid_y       = 13
+inv_grid_x       = 1
+inv_grid_y       = 0
 auto_attach      = false
 
 [rysal_patch_monolith]:guitar_a
@@ -66,10 +73,12 @@ inv_name_short   = rysal_patch_monolith_name
 description      = rysal_patch_monolith_desc
 inv_weight       = 0.02
 cost             = 100
+icons_texture    = ui\ui_leekos_patches
+inv_scale        = 2
 inv_grid_width   = 1
 inv_grid_height  = 1
-inv_grid_x       = 6
-inv_grid_y       = 13
+inv_grid_x       = 7
+inv_grid_y       = 0
 auto_attach      = false
 
 [rysal_patch_killer]:guitar_a
@@ -80,10 +89,12 @@ inv_name_short   = rysal_patch_killer_name
 description      = rysal_patch_killer_desc
 inv_weight       = 0.02
 cost             = 100
+icons_texture    = ui\ui_leekos_patches
+inv_scale        = 2
 inv_grid_width   = 1
 inv_grid_height  = 1
 inv_grid_x       = 6
-inv_grid_y       = 13
+inv_grid_y       = 0
 auto_attach      = false
 
 [rysal_patch_army]:guitar_a
@@ -94,10 +105,12 @@ inv_name_short   = rysal_patch_army_name
 description      = rysal_patch_army_desc
 inv_weight       = 0.02
 cost             = 100
+icons_texture    = ui\ui_leekos_patches
+inv_scale        = 2
 inv_grid_width   = 1
 inv_grid_height  = 1
-inv_grid_x       = 6
-inv_grid_y       = 13
+inv_grid_x       = 0
+inv_grid_y       = 0
 auto_attach      = false
 
 [rysal_patch_ecolog]:guitar_a
@@ -108,8 +121,10 @@ inv_name_short   = rysal_patch_ecolog_name
 description      = rysal_patch_ecolog_desc
 inv_weight       = 0.02
 cost             = 100
+icons_texture    = ui\ui_leekos_patches
+inv_scale        = 2
 inv_grid_width   = 1
 inv_grid_height  = 1
-inv_grid_x       = 6
-inv_grid_y       = 13
+inv_grid_x       = 4
+inv_grid_y       = 0
 auto_attach      = false
