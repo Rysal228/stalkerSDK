@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xml>
+    <!-- Append only to Sych's profile, including when STCOP overrides it. -->
+    <specific_character id="zat_b30_owl_stalker_trader">
+        <actor_dialog override="add">rysal_owl_patch_offer</actor_dialog>
+        <actor_dialog override="add">rysal_owl_patch_turn_in</actor_dialog>
+    </specific_character>
+</xml>

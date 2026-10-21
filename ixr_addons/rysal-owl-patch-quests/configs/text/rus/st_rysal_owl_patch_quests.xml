@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+    <string id="rysal_owl_patch_offer_0">
+        <text>Есть какие-нибудь заказы на нашивки?</text>
+    </string>
+    <string id="rysal_owl_patch_offer_1">
+        <text>Принеси пять нашивок одной группировки. За каждую партию плачу по тарифу. Выбирай заказ.</text>
+    </string>
+    <string id="rysal_owl_patch_turn_in_0">
+        <text>Я принёс нашивки по заказу.</text>
+    </string>
+    <string id="rysal_owl_patch_turn_in_1">
+        <text>Ну, показывай, чьи нашивки принёс. За каждую пятёрку рассчитаюсь.</text>
+    </string>
+    <string id="rysal_owl_patch_later">
+        <text>Подумаю. Пока ничего не беру.</text>
+    </string>
+    <string id="rysal_owl_patch_not_ready">
+        <text>Остальные нашивки пока не собрал.</text>
+    </string>
+    <string id="rysal_owl_patch_choose_bandit">
+        <text>Возьму заказ на пять нашивок бандитов. Награда 2000 рублей.</text>
+    </string>
+    <string id="rysal_owl_patch_deliver_bandit">
+        <text>Сдаю пять нашивок бандитов.</text>
+    </string>
+    <string id="rysal_owl_patch_bandit_task_title">
+        <text>Нашивки: Бандиты</text>
+    </string>
+    <string id="rysal_owl_patch_bandit_task_descr">
+        <text>Принести Сычу на «Скадовск» пять нашивок бандитов. Награда - 2000 рублей.</text>
+    </string>
+    <string id="rysal_owl_patch_choose_stalker">
+        <text>Возьму заказ на пять нашивок одиночек. Награда 3000 рублей.</text>
+    </string>
+    <string id="rysal_owl_patch_deliver_stalker">
+        <text>Сдаю пять нашивок одиночек.</text>
+    </string>
+    <string id="rysal_owl_patch_stalker_task_title">
+        <text>Нашивки: Одиночки</text>
+    </string>
+    <string id="rysal_owl_patch_stalker_task_descr">
+        <text>Принести Сычу на «Скадовск» пять нашивок одиночек. Награда - 3000 рублей.</text>
+    </string>
+    <string id="rysal_owl_patch_choose_freedom">
+        <text>Возьму заказ на пять нашивок свободовцев. Награда 4000 рублей.</text>
+    </string>
+    <string id="rysal_owl_patch_deliver_freedom">
+        <text>Сдаю пять нашивок свободовцев.</text>
+    </string>
+    <string id="rysal_owl_patch_freedom_task_title">
+        <text>Нашивки: Свобода</text>
+    </string>
+    <string id="rysal_owl_patch_freedom_task_descr">
+        <text>Принести Сычу на «Скадовск» пять нашивок свободовцев. Награда - 4000 рублей.</text>
+    </string>
+    <string id="rysal_owl_patch_choose_dolg">
+        <text>Возьму заказ на пять нашивок долговцев. Награда 5000 рублей.</text>
+    </string>
+    <string id="rysal_owl_patch_deliver_dolg">
+        <text>Сдаю пять нашивок долговцев.</text>
+    </string>
+    <string id="rysal_owl_patch_dolg_task_title">
+        <text>Нашивки: Долг</text>
+    </string>
+    <string id="rysal_owl_patch_dolg_task_descr">
+        <text>Принести Сычу на «Скадовск» пять нашивок долговцев. Награда - 5000 рублей.</text>
+    </string>
+    <string id="rysal_owl_patch_choose_killer">
+        <text>Возьму заказ на пять нашивок наёмников. Награда 7000 рублей.</text>
+    </string>
+    <string id="rysal_owl_patch_deliver_killer">
+        <text>Сдаю пять нашивок наёмников.</text>
+    </string>
+    <string id="rysal_owl_patch_killer_task_title">
+        <text>Нашивки: Наёмники</text>
+    </string>
+    <string id="rysal_owl_patch_killer_task_descr">
+        <text>Принести Сычу на «Скадовск» пять нашивок наёмников. Награда - 7000 рублей.</text>
+    </string>
+    <string id="rysal_owl_patch_choose_monolith">
+        <text>Возьму заказ на пять нашивок монолитовцев. Награда 10000 рублей.</text>
+    </string>
+    <string id="rysal_owl_patch_deliver_monolith">
+        <text>Сдаю пять нашивок монолитовцев.</text>
+    </string>
+    <string id="rysal_owl_patch_monolith_task_title">
+        <text>Нашивки: Монолит</text>
+    </string>
+    <string id="rysal_owl_patch_monolith_task_descr">
+        <text>Принести Сычу на «Скадовск» пять нашивок монолитовцев. Награда - 10000 рублей.</text>
+    </string>
+</string_table>
