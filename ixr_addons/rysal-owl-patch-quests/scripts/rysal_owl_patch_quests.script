@@ -1,6 +1,6 @@
--- Six independent one-time faction patch contracts for Owl (Sych).
+-- Six independent, repeatable faction patch contracts for Owl (Sych).
 -- Requires the separate rysal-faction-patches addon.
--- Each quest gives five patches to Owl; task_manager awards the money once.
+-- Each completion gives five patches to Owl; task_manager awards money once.
 
 local NEED_COUNT = 5
 local order_names = {"bandit", "stalker", "freedom", "dolg", "killer", "monolith"}
@@ -51,11 +51,30 @@ local function has_order_done(order)
     return has_alife_info(order.done)
 end
 
+-- Reuse the same task ID only after the previous instance is fully closed.
+-- task_info is released by task_manager.task_callback after completion.
+-- get_task(..., true) additionally checks the game's active task registry.
+local function previous_task_finished(order)
+    local manager = task_manager.get_task_manager()
+
+    return manager.task_info[order.task] == nil
+        and db.actor:get_task(order.task, true) == nil
+end
+
 local function can_accept(id)
     local order = orders[id]
-    return db.actor ~= nil and order ~= nil
-        and not has_order_started(order)
-        and not has_order_done(order)
+    if db.actor == nil or order == nil then
+        return false
+    end
+
+    -- The previous batch was delivered: waiting for task closure/reward.
+    if has_order_done(order) then
+        return previous_task_finished(order)
+    end
+
+    -- Fresh order is available; do not duplicate an ongoing task.
+    return not has_order_started(order)
+        and previous_task_finished(order)
 end
 
 local function item_count(section)
@@ -88,6 +107,16 @@ local function accept(id)
     end
 
     local order = orders[id]
+
+    -- Reset flags only when the player accepts a NEW cycle, not on delivery:
+    -- clearing "done" at delivery would prevent the previous task's reward.
+    if has_order_done(order) then
+        db.actor:disable_info_portion(order.done)
+    end
+    if has_order_started(order) then
+        db.actor:disable_info_portion(order.started)
+    end
+
     task_manager.get_task_manager():give_task(order.task)
     db.actor:give_info_portion(order.started)
 end
