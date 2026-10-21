@@ -1,0 +1,10 @@
+	<!--Custom HUD Indicator-->
+<w>
+	<file name="ui\Equipment_icons">
+    	<texture id="ui_dyn_eq_light"			x="552"	y="492"	width="174"	height="54" />
+		<texture id="ui_dyn_eq_medium"			x="552"	y="549"	width="210"	height="54" />
+		<texture id="ui_dyn_eq_heavy"			x="552"	y="606"	width="186"	height="54" />
+		<texture id="ui_dyn_eq_exo"				x="552"	y="663"	width="114"	height="54" />
+		<texture id="ui_dyn_eq_novice"			x="0"	y="743"	width="189"	height="54" />
+    </file>
+</w>

@@ -1,0 +1,6 @@
+<w>
+    <file name="ui\ui_mm_faction_patches">
+       <texture id="ui_mm_faction_stalker" x="768" y="0" 		width="128" height="128" />
+       <texture id="ui_mm_faction_stalker_inactive" 	x="896" y="0" 		width="128" height="128" />
+    </file>
+</w>

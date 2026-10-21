@@ -1,0 +1,6 @@
+<w>
+    <file name="ui\ui_mm_faction_patches">
+       <texture id="ui_mm_faction_ecolog" 	x="128" y="256" 		width="128" height="128" />
+       <texture id="ui_mm_faction_ecolog_inactive" 	x="512" y="256" 	width="128" height="128" />
+    </file>
+</w>

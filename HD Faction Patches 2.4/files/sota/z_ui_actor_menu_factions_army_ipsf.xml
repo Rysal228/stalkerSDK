@@ -1,0 +1,7 @@
+<w>
+<!-- faction and rouble icons -->
+	<file name="ui\ui_actor_menu_faction_icons">
+		<texture id="ui_mm_faction_icon_army"     x="612" y="612" width="204" height="204" />
+	</file>
+	
+</w>	

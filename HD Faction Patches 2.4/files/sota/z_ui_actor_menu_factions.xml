@@ -1,0 +1,159 @@
+<w>
+<!-- faction and rouble icons -->
+	<file name="ui\ui_actor_menu_faction_icons">
+		<texture id="ui_mm_faction_icon_freedom"  x="0"   y="0"   width="204" height="204" />
+		<texture id="ui_mm_faction_icon_bandit"   x="408" y="0"   width="204" height="204" />
+		<texture id="ui_mm_faction_icon_dolg"     x="612" y="0"   width="204" height="204" />
+		<texture id="ui_mm_faction_icon_csky"     x="0"   y="204" width="204" height="204" />
+		<texture id="ui_mm_faction_icon_killer"   x="612" y="204" width="204" height="204" />
+		<texture id="ui_mm_faction_icon_renegade" x="204" y="408" width="204" height="204" />
+		<texture id="ui_mm_faction_icon_greh"     x="408" y="408" width="204" height="204" />
+		<texture id="ui_mm_faction_icon_isg"      x="612" y="408" width="204" height="204" />
+		
+		<texture id="ui_inGame2_faction_roubles"  x="0"   y="990" width="34"  height="34" />
+	</file>
+	
+<!-- GAMMA overlays style -->
+	<file name="ui\ui_actor_menu_faction_overlays">
+		<texture id="ui_inGame2_faction_freedom"     x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_stalker"     x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_bandit"      x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_dolg"        x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_csky"        x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_ecolog"      x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_army"        x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_killer"      x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_monolith"    x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_renegade"    x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_greh"        x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_isg"         x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_neutral"     x="0" y="210" width="288" height="204" />
+		<texture id="ui_inGame2_faction_bg"          x="0" y="420" width="0"   height="0" />
+		
+		<texture id="ui_inGame2_faction_freedom_16"  x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_stalker_16"  x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_bandit_16"   x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_dolg_16"     x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_csky_16"     x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_ecolog_16"   x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_army_16"     x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_killer_16"   x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_monolith_16" x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_renegade_16" x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_greh_16"     x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_isg_16"      x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_neutral_16"  x="0" y="210" width="288" height="204" />
+		<texture id="ui_inGame2_faction_bg_16"       x="0" y="420" width="0"   height="0" />
+		
+		<texture id="ui_inGame2_faction_freedom_21"  x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_stalker_21"  x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_bandit_21"   x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_dolg_21"     x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_csky_21"     x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_ecolog_21"   x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_army_21"     x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_killer_21"   x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_monolith_21" x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_renegade_21" x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_greh_21"     x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_isg_21"      x="0" y="0"   width="288" height="204" />
+		<texture id="ui_inGame2_faction_neutral_21"  x="0" y="210" width="288" height="204" />
+		<texture id="ui_inGame2_faction_bg_21"       x="0" y="420" width="0"   height="0" />
+	</file>
+	
+<!-- Modern UI overlays style -->
+	<file name="ui\ui_actor_menu_faction_overlays_alt">
+		<texture id="ui_inGame2_faction_freedom_alt"     x="0"    y="0"    width="646"  height="204" />
+		<texture id="ui_inGame2_faction_stalker_alt"     x="0"    y="210"  width="646"  height="204" />
+		<texture id="ui_inGame2_faction_bandit_alt"      x="0"    y="420"  width="646"  height="204" />
+		<texture id="ui_inGame2_faction_dolg_alt"        x="0"    y="630"  width="646"  height="204" />
+		<texture id="ui_inGame2_faction_csky_alt"        x="0"    y="840"  width="646"  height="204" />
+		<texture id="ui_inGame2_faction_ecolog_alt"      x="0"    y="1050" width="646"  height="204" />
+		<texture id="ui_inGame2_faction_army_alt"        x="0"    y="1260" width="646"  height="204" />
+		<texture id="ui_inGame2_faction_killer_alt"      x="0"    y="1470" width="646"  height="204" />
+		<texture id="ui_inGame2_faction_monolith_alt"    x="0"    y="1680" width="646"  height="204" />
+		<texture id="ui_inGame2_faction_renegade_alt"    x="0"    y="1890" width="646"  height="204" />
+		<texture id="ui_inGame2_faction_greh_alt"        x="0"    y="2100" width="646"  height="204" />
+		<texture id="ui_inGame2_faction_isg_alt"         x="0"    y="2310" width="646"  height="204" />
+		<texture id="ui_inGame2_faction_neutral_alt"     x="0"    y="2520" width="646"  height="204" />
+		<texture id="ui_inGame2_faction_bg_alt"          x="0"    y="2730" width="646"  height="204" />
+		
+		<texture id="ui_inGame2_faction_freedom_alt_16"  x="1062" y="0"    width="986"  height="204" />
+		<texture id="ui_inGame2_faction_stalker_alt_16"  x="1062" y="210"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_bandit_alt_16"   x="1062" y="420"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_dolg_alt_16"     x="1062" y="630"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_csky_alt_16"     x="1062" y="840"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_ecolog_alt_16"   x="1062" y="1050" width="986"  height="204" />
+		<texture id="ui_inGame2_faction_army_alt_16"     x="1062" y="1260" width="986"  height="204" />
+		<texture id="ui_inGame2_faction_killer_alt_16"   x="1062" y="1470" width="986"  height="204" />
+		<texture id="ui_inGame2_faction_monolith_alt_16" x="1062" y="1680" width="986"  height="204" />
+		<texture id="ui_inGame2_faction_renegade_alt_16" x="1062" y="1890" width="986"  height="204" />
+		<texture id="ui_inGame2_faction_greh_alt_16"     x="1062" y="2100" width="986"  height="204" />
+		<texture id="ui_inGame2_faction_isg_alt_16"      x="1062" y="2310" width="986"  height="204" />
+		<texture id="ui_inGame2_faction_neutral_alt_16"  x="1062" y="2520" width="986"  height="204" />
+		<texture id="ui_inGame2_faction_bg_alt_16"       x="1062" y="2730" width="986"  height="204" />
+		
+		<texture id="ui_inGame2_faction_freedom_alt_21"  x="2654" y="0"    width="1442" height="204" />
+		<texture id="ui_inGame2_faction_stalker_alt_21"  x="2654" y="210"  width="1442" height="204" />
+		<texture id="ui_inGame2_faction_bandit_alt_21"   x="2654" y="420"  width="1442" height="204" />
+		<texture id="ui_inGame2_faction_dolg_alt_21"     x="2654" y="630"  width="1442" height="204" />
+		<texture id="ui_inGame2_faction_csky_alt_21"     x="2654" y="840"  width="1442" height="204" />
+		<texture id="ui_inGame2_faction_ecolog_alt_21"   x="2654" y="1050" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_army_alt_21"     x="2654" y="1260" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_killer_alt_21"   x="2654" y="1470" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_monolith_alt_21" x="2654" y="1680" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_renegade_alt_21" x="2654" y="1890" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_greh_alt_21"     x="2654" y="2100" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_isg_alt_21"      x="2654" y="2310" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_neutral_alt_21"  x="2654" y="2520" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_bg_alt_21"       x="2654" y="2730" width="1442" height="204" />
+	</file>
+	
+<!-- like RoH (idea from Modern UI) overlays style -->
+	<file name="ui\ui_actor_menu_faction_overlays_alt2">
+		<texture id="ui_inGame2_faction_freedom_alt2"     x="0" y="0"    width="646"  height="204" />
+		<texture id="ui_inGame2_faction_stalker_alt2"     x="0" y="0"    width="646"  height="204" />
+		<texture id="ui_inGame2_faction_bandit_alt2"      x="0" y="0"    width="646"  height="204" />
+		<texture id="ui_inGame2_faction_dolg_alt2"        x="0" y="0"    width="646"  height="204" />
+		<texture id="ui_inGame2_faction_csky_alt2"        x="0" y="0"    width="646"  height="204" />
+		<texture id="ui_inGame2_faction_ecolog_alt2"      x="0" y="0"    width="646"  height="204" />
+		<texture id="ui_inGame2_faction_army_alt2"        x="0" y="0"    width="646"  height="204" />
+		<texture id="ui_inGame2_faction_killer_alt2"      x="0" y="0"    width="646"  height="204" />
+		<texture id="ui_inGame2_faction_monolith_alt2"    x="0" y="0"    width="646"  height="204" />
+		<texture id="ui_inGame2_faction_renegade_alt2"    x="0" y="0"    width="646"  height="204" />
+		<texture id="ui_inGame2_faction_greh_alt2"        x="0" y="0"    width="646"  height="204" />
+		<texture id="ui_inGame2_faction_isg_alt2"         x="0" y="0"    width="646"  height="204" />
+		<texture id="ui_inGame2_faction_neutral_alt2"     x="0" y="210"  width="646"  height="204" />
+		<texture id="ui_inGame2_faction_bg_alt2"          x="0" y="420"  width="646"  height="204" />
+		
+		<texture id="ui_inGame2_faction_freedom_alt2_16"  x="0" y="630"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_stalker_alt2_16"  x="0" y="630"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_bandit_alt2_16"   x="0" y="630"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_dolg_alt2_16"     x="0" y="630"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_csky_alt2_16"     x="0" y="630"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_ecolog_alt2_16"   x="0" y="630"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_army_alt2_16"     x="0" y="630"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_killer_alt2_16"   x="0" y="630"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_monolith_alt2_16" x="0" y="630"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_renegade_alt2_16" x="0" y="630"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_greh_alt2_16"     x="0" y="630"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_isg_alt2_16"      x="0" y="630"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_neutral_alt2_16"  x="0" y="840"  width="986"  height="204" />
+		<texture id="ui_inGame2_faction_bg_alt2_16"       x="0" y="1050" width="986"  height="204" />
+		
+		<texture id="ui_inGame2_faction_freedom_alt2_21"  x="0" y="1260" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_stalker_alt2_21"  x="0" y="1260" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_bandit_alt2_21"   x="0" y="1260" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_dolg_alt2_21"     x="0" y="1260" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_csky_alt2_21"     x="0" y="1260" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_ecolog_alt2_21"   x="0" y="1260" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_army_alt2_21"     x="0" y="1260" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_killer_alt2_21"   x="0" y="1260" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_monolith_alt2_21" x="0" y="1260" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_renegade_alt2_21" x="0" y="1260" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_greh_alt2_21"     x="0" y="1260" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_isg_alt2_21"      x="0" y="1260" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_neutral_alt2_21"  x="0" y="1470" width="1442" height="204" />
+		<texture id="ui_inGame2_faction_bg_alt2_21"       x="0" y="1680" width="1442" height="204" />
+	</file>
+</w>
