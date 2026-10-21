@@ -963,6 +963,8 @@
 		<actor_dialog>zat_a2_stalker_barmen_actor_info</actor_dialog>
 		<actor_dialog>demo_conserva_offer</actor_dialog>
 		<actor_dialog>demo_conserva_turn_in</actor_dialog>
+		<actor_dialog>demo_supplies_offer</actor_dialog>
+		<actor_dialog>demo_supplies_report</actor_dialog>
 		<actor_dialog>actor_break_dialog</actor_dialog>
 
 	</specific_character>
