@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+	<string id="rysal_patch_stalker_name">
+		<text>Нашивка: Одиночки</text>
+	</string>
+	<string id="rysal_patch_stalker_desc">
+		<text>Нашивка группировки «Одиночки». Трофей, снятый с погибшего сталкера.</text>
+	</string>
+	<string id="rysal_patch_dolg_name">
+		<text>Нашивка: Долг</text>
+	</string>
+	<string id="rysal_patch_dolg_desc">
+		<text>Нашивка группировки «Долг». Трофей, снятый с погибшего сталкера.</text>
+	</string>
+	<string id="rysal_patch_freedom_name">
+		<text>Нашивка: Свобода</text>
+	</string>
+	<string id="rysal_patch_freedom_desc">
+		<text>Нашивка группировки «Свобода». Трофей, снятый с погибшего сталкера.</text>
+	</string>
+	<string id="rysal_patch_bandit_name">
+		<text>Нашивка: Бандиты</text>
+	</string>
+	<string id="rysal_patch_bandit_desc">
+		<text>Нашивка группировки «Бандиты». Трофей, снятый с погибшего сталкера.</text>
+	</string>
+	<string id="rysal_patch_monolith_name">
+		<text>Нашивка: Монолит</text>
+	</string>
+	<string id="rysal_patch_monolith_desc">
+		<text>Нашивка группировки «Монолит». Трофей, снятый с погибшего сталкера.</text>
+	</string>
+	<string id="rysal_patch_killer_name">
+		<text>Нашивка: Наёмники</text>
+	</string>
+	<string id="rysal_patch_killer_desc">
+		<text>Нашивка группировки «Наёмники». Трофей, снятый с погибшего сталкера.</text>
+	</string>
+	<string id="rysal_patch_army_name">
+		<text>Нашивка: Военные</text>
+	</string>
+	<string id="rysal_patch_army_desc">
+		<text>Нашивка группировки «Военные». Трофей, снятый с погибшего сталкера.</text>
+	</string>
+	<string id="rysal_patch_ecolog_name">
+		<text>Нашивка: Учёные</text>
+	</string>
+	<string id="rysal_patch_ecolog_desc">
+		<text>Нашивка группировки «Учёные». Трофей, снятый с погибшего сталкера.</text>
+	</string>
+</string_table>
