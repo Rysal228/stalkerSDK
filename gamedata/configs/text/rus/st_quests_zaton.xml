@@ -778,9 +778,21 @@
 		<text>Полученный у Ноя артефакт и есть тот самый «Компас», что нужен Бороде.</text>
 	</string>
 	<string id="demo_conserva_task_title">
-    		<text>Принести тушёнку</text>
+    		<text>Принести пять банок тушёнки</text>
 	</string>
 	<string id="demo_conserva_task_desc">
-    		<text>Борода попросил принести ему банку тушёнки. Награда будет небольшая.</text>
+    		<text>Борода попросил принести пять банок тушёнки. Награда - 500 рублей.</text>
+	</string>
+	<string id="demo_supplies_go_hawaiian_title">
+		<text>Наладить поставки</text>
+	</string>
+	<string id="demo_supplies_go_hawaiian_desc">
+		<text>Борода попросил договориться с Гавайцем на станции «Янов» о поставках еды на «Скадовск». Гаваец может потребовать плату.</text>
+	</string>
+	<string id="demo_supplies_report_boroda_title">
+		<text>Доложить Бороде</text>
+	</string>
+	<string id="demo_supplies_report_boroda_desc">
+		<text>Гаваец согласился наладить поставки за 2000 рублей. Нужно вернуться к Бороде на «Скадовск».</text>
 	</string>
 </string_table>

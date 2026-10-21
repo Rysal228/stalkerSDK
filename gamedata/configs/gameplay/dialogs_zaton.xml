@@ -7263,4 +7263,43 @@
         	</phrase>
     	</phrase_list>
    </dialog>	
+
+    <dialog id="demo_supplies_offer" priority="100">
+        <has_info>demo_conserva_done</has_info>
+        <dont_has_info>demo_supplies_started</dont_has_info>
+        <precondition>demo_conserva_quest.can_start_supplies</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text>demo_supplies_offer_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>demo_supplies_offer_1</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <phrase id="2">
+                <text>demo_supplies_offer_2</text>
+                <action>demo_conserva_quest.start_supplies</action>
+            </phrase>
+            <phrase id="3">
+                <text>demo_supplies_offer_3</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="demo_supplies_report" priority="100">
+        <has_info>demo_supplies_paid</has_info>
+        <dont_has_info>demo_supplies_done</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>demo_supplies_report_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>demo_supplies_report_1</text>
+                <action>demo_conserva_quest.report_supplies</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
 </game_dialogs>

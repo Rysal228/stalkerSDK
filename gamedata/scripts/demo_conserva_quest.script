@@ -1,12 +1,32 @@
+-- Supply quest chain: five cans for Beard, one game-day delay,
+-- payment to Hawaiian and final report back to Beard.
+
+local CONSERVA_COUNT = 5
+local SUPPLY_PRICE = 2000
+local WAIT_SECONDS = 24 * 60 * 60
+
+function count_conserva()
+    if db.actor == nil then
+        return 0
+    end
+
+    local count = 0
+    local function count_item(_, item)
+        if item:section() == "conserva" then
+            count = count + 1
+        end
+    end
+
+    db.actor:iterate_inventory(count_item, nil)
+    return count
+end
+
 function accept(first_speaker, second_speaker)
-    if has_alife_info("demo_conserva_started") then
+    if db.actor == nil or has_alife_info("demo_conserva_started") then
         return
     end
 
-    task_manager.get_task_manager():give_task(
-        "demo_conserva_delivery"
-    )
-
+    task_manager.get_task_manager():give_task("demo_conserva_delivery")
     db.actor:give_info_portion("demo_conserva_started")
 end
 
@@ -14,7 +34,7 @@ function can_turn_in(first_speaker, second_speaker)
     return db.actor ~= nil
         and has_alife_info("demo_conserva_started")
         and not has_alife_info("demo_conserva_done")
-        and db.actor:object("conserva") ~= nil
+        and count_conserva() >= CONSERVA_COUNT
 end
 
 function turn_in(first_speaker, second_speaker)
@@ -22,12 +42,57 @@ function turn_in(first_speaker, second_speaker)
         return
     end
 
-    -- Забираем одну банку тушёнки
     dialogs.relocate_item_section_from_actor(
-        first_speaker,
-        second_speaker,
-        "conserva"
+        first_speaker, second_speaker, "conserva", CONSERVA_COUNT
     )
-
     db.actor:give_info_portion("demo_conserva_done")
+end
+
+function can_start_supplies(first_speaker, second_speaker)
+    if db.actor == nil
+        or not has_alife_info("demo_conserva_done")
+        or has_alife_info("demo_supplies_started") then
+        return false
+    end
+
+    local completion_time = db.actor:get_info_time("demo_conserva_done")
+    return game.get_game_time():diffSec(completion_time) >= WAIT_SECONDS
+end
+
+function start_supplies(first_speaker, second_speaker)
+    if not can_start_supplies(first_speaker, second_speaker) then
+        return
+    end
+
+    task_manager.get_task_manager():give_task("demo_supplies_go_hawaiian")
+    db.actor:give_info_portion("demo_supplies_started")
+end
+
+function can_pay_hawaiian(first_speaker, second_speaker)
+    return db.actor ~= nil
+        and has_alife_info("demo_supplies_started")
+        and not has_alife_info("demo_supplies_paid")
+        and db.actor:money() >= SUPPLY_PRICE
+end
+
+function pay_hawaiian(first_speaker, second_speaker)
+    if not can_pay_hawaiian(first_speaker, second_speaker) then
+        return
+    end
+
+    dialogs.relocate_money_from_actor(
+        first_speaker, second_speaker, SUPPLY_PRICE
+    )
+    db.actor:give_info_portion("demo_supplies_paid")
+    task_manager.get_task_manager():give_task("demo_supplies_report_boroda")
+end
+
+function report_supplies(first_speaker, second_speaker)
+    if db.actor == nil
+        or not has_alife_info("demo_supplies_paid")
+        or has_alife_info("demo_supplies_done") then
+        return
+    end
+
+    db.actor:give_info_portion("demo_supplies_done")
 end
