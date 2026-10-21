@@ -1,71 +1,74 @@
-# Rysal Faction Patches — черновая интеграция IX-Ray / CoP
+# Rysal Faction Patches для IX-Ray
 
-Этот отдельный аддон для `ixr_addons` вводит 8 секций предметов —
-нашивки Одиночек, Долга, Свободы, Бандитов, Монолита, Наёмников,
-Военных и Учёных. Каждая нашивка появляется у погибшего NPC
-с соответствующей группировкой (вероятность 100%, по 1 шт.).
+Отдельный аддон с HD-нашивками Leekos (8 группировок). Трофейная
+нашивка появляется в инвентаре обычного погибшего сталкера соответствующей
+группировки, если стандартная система выпадения лута NPC активна.
 
-## Сейчас работает только основа
+## Как именно аддон связан с движком
 
-* Новые секции предметов определены в `mod_items_rysal_patches.ltx`.
-* Таблицы добычи, коэффициенты локаций и количества патчатся через DLTX.
-* Оригинальные `death_manager.script`, `system.ltx` и STCOP не изменяются.
-* Названия и описания на русском — в `st_rysal_patches.xml`, Windows-1251.
-* **HD-иконки Leekos подключены.** Чистый атлас `ui_leekos_patches.dds`
-  взят из загруженного тобой каталога `HD Faction Patches 2.4/files/loot/`.
-  Каждая нашивка использует собственную ячейку в атласе.
-* IX-Ray 1.3+ использует `icons_texture` и `inv_scale = 2`.
-  Предмет занимает одну клетку инвентаря, а иконка берётся из 100×100 пикселей.
-* **3D-модель на земле временно — обычный КПК.** В инвентаре это
-  не влияет на само отображение иконки.
-* Это кодовый каркас; его надо проверить в игре и согласовать с
-  текущими таблицами добычи установленной STCOP-сборки.
+* Наличие `addon.init` делает папку модулем IX-Ray; эта папка попадает в
+  виртуальную игровую файловую систему через `$arch_dir_addons$`.
+* `configs/mod_system_rysal_patches.ltx` — **DLTX к корневому
+  `configs/system.ltx`**. Именно туда входят новые предметные секции:
+  `rysal_patch_stalker`, `rysal_patch_dolg`, `rysal_patch_freedom`,
+  `rysal_patch_bandit`, `rysal_patch_monolith`,
+  `rysal_patch_killer`, `rysal_patch_army`, `rysal_patch_ecolog`.
+* `configs/misc/mod_death_generic_rysal_patches.ltx` — **DLTX к корневому
+  `configs/misc/death_generic.ltx`**. Обновляет три группы таблиц:
+  `[stalker]`, `[freedom]` и другие; `[default]` и уровни;
+  `[item_count_0]` и остальные сложности. В этих секциях новые нашивки
+  назначены своим группировкам, количество 1, шанс 100%.
+* Стандартный `death_manager.script` читает `misc/death_generic.ltx`,
+  определяет `character_community(npc)` и спавнит предмет с родителем NPC.
+* `configs/text/rus/st_rysal_patches.xml` содержит русские названия и
+  описания в кодировке **Windows-1251**; сама игра автоматически читает
+  обычные таблицы локализации из `configs/text/rus/*.xml`.
+* `textures/ui/ui_leekos_patches.dds` — оригинальный чистый атлас из
+  `HD Faction Patches 2.4/files/loot/ui_leekos_patches.dds`;
+  указатели `icons_texture`, `inv_scale` и `inv_grid_*` индивидуальны.
+  Не заменяет `ui_icon_equipment.dds` и не изменяет STCOP.
+* Пока модель нашивки на земле `dev_pda.ogf`; она временная.
+  В инвентаре отображается иконка из DDS.
 
-## Как установить для проверки механики
+## Установка — важно удалить прежние файлы
 
-Скопируй **всю папку** `rysal-faction-patches` в
-`<папка игры>/ixr_addons/`. В корне скопированной папки должен лежать
-`addon.init`. Перезапусти игру и проверь в инвентаре погибших NPC.
+1. В своей игре открой `ixr_addons/rysal-faction-patches`.
+2. **Удали старые четыре LTX**, если они присутствуют:
+   ```
+   configs/misc/mod_items_rysal_patches.ltx
+   configs/misc/mod_death_items_by_communities_rysal_patches.ltx
+   configs/misc/mod_death_items_by_levels_rysal_patches.ltx
+   configs/misc/mod_death_items_count_rysal_patches.ltx
+   ```
+3. Забери из этой ветки два **новых** файла:
+   ```
+   configs/mod_system_rysal_patches.ltx
+   configs/misc/mod_death_generic_rysal_patches.ltx
+   ```
+4. Остальные файлы `addon.init`, `configs/text/rus/st_rysal_patches.xml`
+   и `textures/ui/ui_leekos_patches.dds` оставь.
+5. Перезапусти игру полностью.
 
-Тестируй на обычных NPC каждой группировки. Не на монстрах, торговцах
-или сюжетных персонажах, для которых может быть отключено появление
-добычи через `dont_spawn_loot`.
+**Причина изменения:** движок DLTX автоматически находит `mod_...ltx`
+для корневого LTX. Подключённые `#include` файлы сами по себе не
+считаются корневыми и их `mod_...ltx` автоматически не читаются.
 
-## Подключённый атлас Leekos
+## Проверка
 
-Исходник: [HD Faction Patches 2.4, loot atlas](https://github.com/Rysal228/stalkerSDK/blob/main/HD%20Faction%20Patches%202.4/files/loot/ui_leekos_patches.dds).
-Этот же Git blob подключён по пути
-`textures/ui/ui_leekos_patches.dds` внутри текущего аддона.
-Никаких системных `ui_icon_equipment.dds` заменять не надо.
+Сначала убей обычного свободовца (не сюжетного NPC). После смерти в
+инвентаре должна появиться `Нашивка: Свобода`. Затем проверь одиночку
+и долговца. Не все специальные NPC генерируют добычу; они могут использовать
+`dont_spawn_loot` или особые скрипты.
 
-Сопоставление секций и ячеек при `inv_scale=2` и размерах 1×1:
+Если после перезапуска нет предметов, собери из
+`_appdata_ixray_/logs/` строки `DLTX`, `rysal_patch`, `death_manager`.
+Проверь также наличие `[rysal_patch_freedom]` через меню разработчика
+или чтение текущего `system_ini()`, если есть игровая консоль скриптов.
 
-| Сообщество | Секция | X | Y |
-|---|---|---:|---:|
-| stalker | rysal_patch_stalker | 8 | 0 |
-| dolg | rysal_patch_dolg | 3 | 0 |
-| freedom | rysal_patch_freedom | 5 | 0 |
-| bandit | rysal_patch_bandit | 1 | 0 |
-| monolith | rysal_patch_monolith | 7 | 0 |
-| killer | rysal_patch_killer | 6 | 0 |
-| army | rysal_patch_army | 0 | 0 |
-| ecolog | rysal_patch_ecolog | 4 | 0 |
+## Правовой статус
 
-Координаты рассчитаны по
-`files/loot/mod_system_zzzzzzzzz_leekos_patches.ltx`.
-Оригинальные значения X = 0,2,...,18 заданы в клетках 50 px;
-в IX-Ray применён коэффициент `inv_scale=2`,
-поэтому X для исходного атласа делится на два.
-
-Другие файлы из пакета (fomod, меню, анимации, alt-иконки и
-`ui_mm_faction_patches.dds`) этому аддону не требуются.
-Внешнюю 3D-модель нашивки пакет для CoP не даёт: пока оставлен
-штатный `dev_pda.ogf` при выбрасывании на землю.
-
-### Права на исходные текстуры
-
-В этой ветке размещён выбранный пользователем атлас Leekos из уже опубликованного им архива.
-Источник помечен на ModDB как `Licence: Proprietary`; право на переиспользование/перепубликацию зависит от разрешения автора.
-Скачивание и установка у себя не означает разрешения перепубликовать
-графику в составе другого мода. Для публичного распространения
-адаптированных текстур стоит получить разрешение автора.
+Автор Leekos предоставил пакет HD Faction Patches на ModDB с
+лицензией Proprietary. Исходный атлас уже загружен пользователем в
+публичный репозиторий; отдельный Pull Request его переиспользует без
+изменения данных. Для независимого публичного распространения модифицированных
+ресурсов требуется проверить разрешения автора.
