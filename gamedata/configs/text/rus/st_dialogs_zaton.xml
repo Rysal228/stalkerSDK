@@ -3114,52 +3114,20 @@
 	<string id="zat_b22_barmen_about_vampire_actor3_0">
 		<text>Глухарь мёртв. Похоже, его убил Тремор... только он тоже мёртв.</text>
 	</string>
-	<string id="demo_conserva_offer_0">
-    		<text>Есть для меня работа?</text>
-	</string>
-	<string id="demo_conserva_offer_1">
-    		<text>Принеси мне пять банок тушёнки. Заплачу 500 рублей.</text>
-	</string>
-	<string id="demo_conserva_offer_2">
-    		<text>Договорились, принесу.</text>
-	</string>
-	<string id="demo_conserva_offer_3">
-    		<text>Нет, спасибо. Неинтересно.</text>
-	</string>
-	<string id="demo_conserva_turn_in_0">
-    		<text>Я принёс пять банок тушёнки. Держи!</text>
-	</string>
-	<string id="demo_conserva_turn_in_1">
-    		<text>Отлично! Как договаривались, 500 рублей твои.</text>
-	</string>
-	<string id="demo_supplies_offer_0">
-		<text>Ну что, как теперь с продовольствием?</text>
-	</string>
-	<string id="demo_supplies_offer_1">
-		<text>Тушёнка выручила, но это ненадолго. На «Янове» есть бармен Гаваец. Поговори с ним о регулярных поставках.</text>
-	</string>
-	<string id="demo_supplies_offer_2">
-		<text>Хорошо, съезжу на «Янов».</text>
-	</string>
-	<string id="demo_supplies_offer_3">
-		<text>Пока не могу. Зайду позже.</text>
-	</string>
-	<string id="demo_supplies_hawaiian_0">
-		<text>Я от Бороды со «Скадовска». Нужны регулярные поставки еды.</text>
-	</string>
-	<string id="demo_supplies_hawaiian_1">
-		<text>Могу помочь, но организация поставок обойдётся в 2000 рублей.</text>
-	</string>
-	<string id="demo_supplies_hawaiian_2">
-		<text>Согласен. Вот 2000 рублей.</text>
-	</string>
-	<string id="demo_supplies_hawaiian_3">
-		<text>Мне нужно подумать. Вернусь позже.</text>
-	</string>
-	<string id="demo_supplies_report_0">
-		<text>Я договорился с Гавайцем. Поставки теперь налажены.</text>
-	</string>
-	<string id="demo_supplies_report_1">
-		<text>Отличная работа! Теперь «Скадовск» не останется без еды.</text>
-	</string>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </string_table>

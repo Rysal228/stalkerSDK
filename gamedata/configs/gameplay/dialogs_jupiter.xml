@@ -8777,27 +8777,5 @@
         </phrase_list>
     </dialog>
 
-    <dialog id="demo_supplies_hawaiian" priority="100">
-        <has_info>demo_supplies_started</has_info>
-        <dont_has_info>demo_supplies_paid</dont_has_info>
-        <phrase_list>
-            <phrase id="0">
-                <text>demo_supplies_hawaiian_0</text>
-                <next>1</next>
-            </phrase>
-            <phrase id="1">
-                <text>demo_supplies_hawaiian_1</text>
-                <next>2</next>
-                <next>3</next>
-            </phrase>
-            <phrase id="2">
-                <text>demo_supplies_hawaiian_2</text>
-                <precondition>demo_conserva_quest.can_pay_hawaiian</precondition>
-                <action>demo_conserva_quest.pay_hawaiian</action>
-            </phrase>
-            <phrase id="3">
-                <text>demo_supplies_hawaiian_3</text>
-            </phrase>
-        </phrase_list>
-    </dialog>
+    
 </game_dialogs>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<game_information_portions>
+    <info_portion id="demo_conserva_started" />
+    <info_portion id="demo_conserva_done" />
+    <info_portion id="demo_supplies_started" />
+    <info_portion id="demo_supplies_paid" />
+    <info_portion id="demo_supplies_done" />
+</game_information_portions>
