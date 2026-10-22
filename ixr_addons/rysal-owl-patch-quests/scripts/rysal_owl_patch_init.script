@@ -2,15 +2,30 @@
 -- This executes on loading the game/location/save; the infoportion
 -- persists in the actor's saved known-info registry after first update.
 local INFO = "rysal_owl_patch_dialogs_enabled"
+local actor_logged = false
+local registry_logged = false
+
+-- These messages distinguish entry-point loading, DLTX registration,
+-- and successful actor infoportion registration in the engine log.
+SemiLog("[Rysal Owl] addon entry script loaded")
 
 function on_update()
-    if db.actor == nil or has_alife_info(INFO) then
+    if db.actor == nil then
         return
     end
 
-    -- Never grant a globally-known dialog before its XML file was
-    -- registered. Otherwise *every* NPC conversation could crash
-    -- CPhraseDialog::GetById if the DLTX registration is missing.
+    if not actor_logged then
+        SemiLog("[Rysal Owl] actor update; menu_info="
+            .. tostring(has_alife_info(INFO)))
+        actor_logged = true
+    end
+
+    if has_alife_info(INFO) then
+        return
+    end
+
+    -- Never grant a globally-known dialog until its XML registry
+    -- files are registered in the system.ini via DLTX.
     local ini = system_ini()
     local dialogs_files = ini:r_string("dialogs", "files")
     local info_files = ini:r_string("info_portions", "files")
@@ -18,6 +33,10 @@ function on_update()
     if string.find(dialogs_files, "rysal_owl_patch_dialogs", 1, true)
         and string.find(info_files, "rysal_owl_patch_info", 1, true) then
         db.actor:give_info_portion(INFO)
+        SemiLog("[Rysal Owl] menu info portion granted")
+    elseif not registry_logged then
+        SemiLog("[Rysal Owl] missing dialog/info registry DLTX entries")
+        registry_logged = true
     end
 end
 
