@@ -1,6 +1,6 @@
 -- Six independent, repeatable faction patch contracts for Owl (Sych).
 -- Requires the separate rysal-faction-patches addon.
--- Each completion gives five patches to Owl; task_manager awards money once.
+-- Each completion gives five patches to Owl; Lua pays a fresh random amount once.
 
 -- Dialogues are attached directly to Owl by XMLOverride in IX-Ray 1.3.4.
 -- The predicate below is a second-level restriction to this NPC.
@@ -34,36 +34,48 @@ local order_names = {"bandit", "stalker", "freedom", "dolg", "killer", "monolith
 local orders = {
     bandit = {
         item = "rysal_patch_bandit",
+        min_reward = 500,
+        max_reward = 2000,
         task = "rysal_owl_patch_bandit_task",
         started = "rysal_owl_patch_bandit_started",
         done = "rysal_owl_patch_bandit_done"
     },
     stalker = {
         item = "rysal_patch_stalker",
+        min_reward = 1000,
+        max_reward = 3000,
         task = "rysal_owl_patch_stalker_task",
         started = "rysal_owl_patch_stalker_started",
         done = "rysal_owl_patch_stalker_done"
     },
     freedom = {
         item = "rysal_patch_freedom",
+        min_reward = 1500,
+        max_reward = 4000,
         task = "rysal_owl_patch_freedom_task",
         started = "rysal_owl_patch_freedom_started",
         done = "rysal_owl_patch_freedom_done"
     },
     dolg = {
         item = "rysal_patch_dolg",
+        min_reward = 2000,
+        max_reward = 5000,
         task = "rysal_owl_patch_dolg_task",
         started = "rysal_owl_patch_dolg_started",
         done = "rysal_owl_patch_dolg_done"
     },
     killer = {
         item = "rysal_patch_killer",
+        min_reward = 3000,
+        max_reward = 7000,
         task = "rysal_owl_patch_killer_task",
         started = "rysal_owl_patch_killer_started",
         done = "rysal_owl_patch_killer_done"
     },
     monolith = {
         item = "rysal_patch_monolith",
+        min_reward = 5000,
+        max_reward = 10000,
         task = "rysal_owl_patch_monolith_task",
         started = "rysal_owl_patch_monolith_started",
         done = "rysal_owl_patch_monolith_done"
@@ -157,8 +169,15 @@ local function turn_in(id, first_speaker, second_speaker)
     dialogs.relocate_item_section_from_actor(
         first_speaker, second_speaker, order.item, NEED_COUNT
     )
-    -- The task's reward_money is paid by the game's task_manager.
-    -- Do not give money here too, or the player would be paid twice.
+    -- Pay one random amount for this delivery, then mark the task done.
+    -- reward_money is deliberately ABSENT in the LTX: the task manager
+    -- must not pay a second fixed reward on completion.
+    -- Round the deal to whole hundreds, including both limits.
+    local reward = math.random(order.min_reward / 100, order.max_reward / 100) * 100
+    dialogs.relocate_money_to_actor(first_speaker, second_speaker, reward)
+    SemiLog("[Rysal Owl] delivered " .. id .. ", paid " .. tostring(reward))
+
+    -- Keep the done flag set until the task manager completes/clears the task.
     db.actor:give_info_portion(order.done)
 end
 
