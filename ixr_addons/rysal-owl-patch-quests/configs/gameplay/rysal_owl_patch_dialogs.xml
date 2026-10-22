@@ -2,7 +2,9 @@
 <game_dialogs>
     <!-- Standalone dialogue registry file registered through DLTX system.ltx. -->
     <dialog id="rysal_owl_patch_offer">
-        <!-- Always expose the entry point; each order has its own precondition.
+        <precondition>rysal_owl_patch_quests.is_owl</precondition>
+        <!-- Globally provided by actor infoportion; NPC-gated at this precondition.
+             Each order also has its own acceptance conditions.
              This avoids suppressing the entire dialogue before the script
              has been loaded or an older save has reconciled its task state. -->
         <phrase_list>
@@ -57,6 +59,7 @@
     </dialog>
 
     <dialog id="rysal_owl_patch_turn_in">
+        <precondition>rysal_owl_patch_quests.is_owl</precondition>
         <precondition>rysal_owl_patch_quests.has_active_orders</precondition>
         <phrase_list>
             <phrase id="0">
