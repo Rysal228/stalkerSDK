@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xml>
+    <!-- IX-Ray 1.3.4 XMLOverride:
+         add children of the matching existing specific_character.
+         Owl is the first specific_character in CoP and STCOP's Zaton file.
+         The "override" marker MUST be on the parent; on actor_dialog
+         it does not add the actor_dialog node in this engine revision. -->
+    <specific_character id="zat_b30_owl_stalker_trader" override="add">
+        <actor_dialog>rysal_owl_patch_offer</actor_dialog>
+        <actor_dialog>rysal_owl_patch_turn_in</actor_dialog>
+    </specific_character>
+</xml>

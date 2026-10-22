@@ -3,10 +3,8 @@
     <!-- Standalone dialogue registry file registered through DLTX system.ltx. -->
     <dialog id="rysal_owl_patch_offer">
         <precondition>rysal_owl_patch_quests.is_owl</precondition>
-        <!-- Globally provided by actor infoportion; NPC-gated at this precondition.
-             Each order also has its own acceptance conditions.
-             This avoids suppressing the entire dialogue before the script
-             has been loaded or an older save has reconciled its task state. -->
+        <!-- The actor dialogue is linked from Owl's character profile.
+             Precondition remains a secondary NPC safety check. -->
         <phrase_list>
             <phrase id="0">
                 <text>rysal_owl_patch_offer_0</text>
