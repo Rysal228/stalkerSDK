@@ -12,4 +12,10 @@
     <info_portion id="rysal_owl_patch_killer_done" />
     <info_portion id="rysal_owl_patch_monolith_started" />
     <info_portion id="rysal_owl_patch_monolith_done" />
+    <!-- Known actor infoportion adds dialogs through CActor::UpdateAvailableDialogs.
+         Their XML preconditions restrict availability to Owl only. -->
+    <info_portion id="rysal_owl_patch_dialogs_enabled">
+        <dialog>rysal_owl_patch_offer</dialog>
+        <dialog>rysal_owl_patch_turn_in</dialog>
+    </info_portion>
 </game_information_portions>
