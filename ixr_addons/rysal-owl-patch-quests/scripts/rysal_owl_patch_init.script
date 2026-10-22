@@ -1,0 +1,24 @@
+-- IX-Ray addon entry point: register actor-update callback only.
+-- This executes on loading the game/location/save; the infoportion
+-- persists in the actor's saved known-info registry after first update.
+local INFO = "rysal_owl_patch_dialogs_enabled"
+
+function on_update()
+    if db.actor == nil or has_alife_info(INFO) then
+        return
+    end
+
+    -- Never grant a globally-known dialog before its XML file was
+    -- registered. Otherwise *every* NPC conversation could crash
+    -- CPhraseDialog::GetById if the DLTX registration is missing.
+    local ini = system_ini()
+    local dialogs_files = ini:r_string("dialogs", "files")
+    local info_files = ini:r_string("info_portions", "files")
+
+    if string.find(dialogs_files, "rysal_owl_patch_dialogs", 1, true)
+        and string.find(info_files, "rysal_owl_patch_info", 1, true) then
+        db.actor:give_info_portion(INFO)
+    end
+end
+
+RegisterScriptCallback("update", on_update)

@@ -42,13 +42,16 @@
 
 ## Как устроена интеграция
 
-- `configs/gameplay/mod_character_desc_zaton_owl_patches.xml`:
-  XMLOverride с `override="add"` к профилю Сыча
-  `zat_b30_owl_stalker_trader`.
-- `configs/gameplay/mod_dialogs_zaton_owl_patches.xml`:
-  добавляет **два новых диалога**, не перезаписывая `dialogs_zaton.xml`.
-- `configs/gameplay/mod_info_zaton_owl_patches.xml`:
-  добавляет 12 инфопоршней, не перезаписывая `info_zaton.xml`.
+- `addon.init` + `scripts/rysal_owl_patch_init.script`:
+  регистрация одноразовой выдачи инфопоршня игроку через коллбэк.
+- `configs/mod_system_rysal_owl_xml.ltx` — DLTX к **корневому
+  `system.ltx`**, который дополняет списки `[dialogs] files` и
+  `[info_portions] files` с помощью `>files`.
+- `configs/gameplay/rysal_owl_patch_dialogs.xml` — отдельный XML с
+  двумя диалогами в реестре `CPhraseDialog`.
+- `configs/gameplay/rysal_owl_patch_info.xml` — отдельный XML с
+  12 инфопоршнями. Эти файлы больше **не** полагаются на XMLOverride
+  для регистрации новых ID.
 - `configs/misc/mod_task_manager_owl_patches.ltx`:
   DLTX к реальному корневому `misc/task_manager.ltx`
   (НЕ к `tm_zaton.ltx`, который включён через `#include`).
@@ -58,11 +61,42 @@
   Lua с проверками инвентаря, выдачей и сдачей заданий.
 
 Ни один штатный XML или скрипт Сыча/Бороды не заменяется.
-XMLOverride добавляет дочерние узлы по идентификатору персонажа, поэтому
-не требуется вручную перезаписывать профиль Сыча в STCOP. Это отличие
-от прежних квестов Бороды, которые редактировали стандартную `gamedata`;
-приоритет конкретной сборки с STCOP всё же нужно проверить в игре.
-Сами квесты Бороды этот аддон **не меняет**.
+В отличие от предыдущей реализации, **ручное добавление**
+`actor_dialog` в STCOP **не требуется**: диалоги из новой
+инфопоршни актёра ограничены проверкой конкретного NPC.
+Квесты Бороды этот аддон **не изменяет**.
+
+## Без правок STCOP: привязка через инфопоршень игрока
+
+**Начиная с этого исправления менять STCOP и исходную `gamedata` не нужно.**
+При загрузке аддона файл `addon.init` подключает
+`scripts/rysal_owl_patch_init.script`, который регистрирует
+коллбэк `update` (обновление игрока). На первом обновлении актёр
+получает постоянную инфопоршню `rysal_owl_patch_dialogs_enabled`.
+
+Новая инфопоршня в `configs/gameplay/rysal_owl_patch_info.xml`
+содержит два `<dialog>`:
+`rysal_owl_patch_offer` и `rysal_owl_patch_turn_in`.
+Движок `CActor::UpdateAvailableDialogs` автоматически предлагает
+диалоги известных инфопоршней. Чтобы эти реплики не появились
+у всех NPC, оба XML-диалога проверяют
+`rysal_owl_patch_quests.is_owl`, сравнивающий ID собеседника
+с `get_story_object_id("zat_b30_owl_stalker_trader_id")`.
+
+**Перед тестом удали временные две строки**
+`<actor_dialog>rysal_owl_patch_offer</actor_dialog>` и
+`<actor_dialog>rysal_owl_patch_turn_in</actor_dialog>` из
+`ixr_addons/ixray-stcop-wp-3.8-cop/configs/gameplay/character_desc_zaton.xml`.
+Иначе один и тот же диалог может добавиться дважды.
+
+Два прежних файла `mod_dialogs_zaton_owl_patches.xml`,
+`mod_info_zaton_owl_patches.xml` и
+`mod_character_desc_zaton_owl_patches.xml` теперь удалены из аддона.
+**Не оставляй их в папке игры после обновления.**
+
+Важное: модель полностью отделена от квестов Бороды, которые
+по-прежнему располагаются в оригинальной `gamedata`. Никаких
+изменений квестовых состояний или диалогов Бороды не требуется.
 
 ## Установка
 
@@ -71,47 +105,21 @@ XMLOverride добавляет дочерние узлы по идентифик
 `<папка игры>/ixr_addons/` рядом с `rysal-faction-patches/`.
 Перезапустить игру. Патч рассчитан на IX-Ray, не на vanilla X-Ray 1.6.02.
 
-## Если Сыч не показывает новую реплику
+## Если диалог не появился
 
-Появление старого задания Сыча на ноутбук **не означает**, что новый
-аддон загрузился. Список диалогов у торговца формируется из профиля
-`zat_b30_owl_stalker_trader`. Он должен дополниться двумя ID:
-
-```xml
-<actor_dialog>rysal_owl_patch_offer</actor_dialog>
-<actor_dialog>rysal_owl_patch_turn_in</actor_dialog>
-```
-
-Обычно это делает XMLOverride из
-`configs/gameplay/mod_character_desc_zaton_owl_patches.xml`.
-В этой версии меню «Есть какие-нибудь заказы на нашивки?» **не имеет
-верхнеуровневого Lua-условия**: если оно отсутствует, проблема почти
-наверняка в чтении XML-профиля, регистрации диалога либо в приоритете
-модов — а не в недостатке нашивок и не в условиях квеста.
-
-Порядок проверки:
-
-1. Убедись, что находятся все файлы `configs/gameplay/*.xml`,
-   `configs/misc/mod_task_manager_owl_patches.ltx`,
-   `configs/text/rus/st_rysal_owl_patch_quests.xml` и
-   `scripts/rysal_owl_patch_quests.script`, а также `addon.init`.
-2. Полностью закрой и заново запусти игру, проверь Сыча.
-3. Если реплика не появилась — **временно** добавь две строки
-   `<actor_dialog>...</actor_dialog>` выше в профиль Сыча
-   `zat_b30_owl_stalker_trader` внутри активного
-   `ixray-stcop-wp-3.8-cop/configs/gameplay/character_desc_zaton.xml`,
-   рядом с обычными `<actor_dialog>`. Предварительно сделай копию
-   этого файла. **Не заменяй весь файл.**
-4. Если ручная привязка помогла — проблема локализована в XMLOverride
-   профиля или приоритете файлов; если нет — проверь, загрузились ли
-   `mod_dialogs_zaton_owl_patches.xml`, локализация и Lua по журналу игры.
-5. При любой ошибке скопируй строки из `_appdata_ixray_/logs/`,
-   содержащие `XML override`, `rysal_owl_patch`, `SCRIPT RUNTIME ERROR`.
-
-Этот временный обход касается **только файла STCOP-аддона**,
-а не оригинальной `gamedata`; остальные квесты Сыча и Бороды
-не нужно редактировать. После выяснения причины ручную привязку
-можно убрать, чтобы не было дубликатов.
+1. Убедись, что `addon.init` содержит строку
+   `script: rysal_owl_patch_init.script`.
+2. Проверь, что новые файлы `configs/mod_system_rysal_owl_xml.ltx`,
+   `configs/gameplay/rysal_owl_patch_dialogs.xml`,
+   `configs/gameplay/rysal_owl_patch_info.xml` установлены.
+3. Удали все три старых `configs/gameplay/mod_*_owl_patches.xml`;
+   они больше не используются.
+4. Сделай резервную копию сохранения, перезапусти игру,
+   загрузи сохранение, подойди к Сычу. Коллбэк актёра должен
+   выдать инфопоршню для регистрации меню.
+5. Если снова происходит вылет — пришли точную ошибку
+   `GetById` или Lua из игрового лога. Отсутствие меню без
+   вылета означает другую проблему с загрузкой или проверкой NPC.
 
 ## Тестирование в игре (обязательно)
 
@@ -135,3 +143,12 @@ XMLOverride добавляет дочерние узлы по идентифик
 **Статус:** XMLOverride, DLTX и Lua проверены по исходникам
 IX-Ray и связи в этих файлах проверены автоматически.
 Поведение в текущей сборке пользователя до игрового теста не подтверждено.
+
+## Технический статус после исправления
+
+Ошибка `CXML_IdToIndex<class CPhraseDialog>::GetById` / `rysal_owl_patch_offer`
+означала отсутствие ID в реестре, а не неправильную установку самой
+папки аддона. DLTX `>files` добавляет новый реестровый XML напрямую,
+поэтому это обход проблемного XMLOverride для новых диалогов.
+
+Реальная работа ещё не подтверждена запуском пользовательской сборки.

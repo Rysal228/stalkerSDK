@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<game_information_portions>
+    <info_portion id="rysal_owl_patch_bandit_started" />
+    <info_portion id="rysal_owl_patch_bandit_done" />
+    <info_portion id="rysal_owl_patch_stalker_started" />
+    <info_portion id="rysal_owl_patch_stalker_done" />
+    <info_portion id="rysal_owl_patch_freedom_started" />
+    <info_portion id="rysal_owl_patch_freedom_done" />
+    <info_portion id="rysal_owl_patch_dolg_started" />
+    <info_portion id="rysal_owl_patch_dolg_done" />
+    <info_portion id="rysal_owl_patch_killer_started" />
+    <info_portion id="rysal_owl_patch_killer_done" />
+    <info_portion id="rysal_owl_patch_monolith_started" />
+    <info_portion id="rysal_owl_patch_monolith_done" />
+    <!-- Known actor infoportion adds dialogs through CActor::UpdateAvailableDialogs.
+         Their XML preconditions restrict availability to Owl only. -->
+    <info_portion id="rysal_owl_patch_dialogs_enabled">
+        <dialog>rysal_owl_patch_offer</dialog>
+        <dialog>rysal_owl_patch_turn_in</dialog>
+    </info_portion>
+</game_information_portions>
