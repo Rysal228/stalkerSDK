@@ -4,6 +4,8 @@
 
 -- These dialogues are listed in the actor's known info portion and
 -- therefore globally visible by default. Only Owl may offer these quests.
+local logged_npc_names = {}
+
 function is_owl(first_speaker, second_speaker)
     if db.actor == nil then
         return false
@@ -18,6 +20,11 @@ function is_owl(first_speaker, second_speaker)
     end
 
     local name = npc:name()
+    if name ~= nil and not logged_npc_names[name] then
+        logged_npc_names[name] = true
+        SemiLog("[Rysal Owl] dialogue NPC name=" .. name)
+    end
+
     return name ~= nil
         and string.find(name, "zat_b30_owl_stalker_trader", 1, true) ~= nil
 end
