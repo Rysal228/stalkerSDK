@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+    <string id="demo_conserva_offer_0">
+    		<text>Есть для меня работа?</text>
+	</string>
+    <string id="demo_conserva_offer_1">
+    		<text>Принеси мне пять банок тушёнки. Заплачу 500 рублей.</text>
+	</string>
+    <string id="demo_conserva_offer_2">
+    		<text>Договорились, принесу.</text>
+	</string>
+    <string id="demo_conserva_offer_3">
+    		<text>Нет, спасибо. Неинтересно.</text>
+	</string>
+    <string id="demo_conserva_turn_in_0">
+    		<text>Я принёс пять банок тушёнки. Держи!</text>
+	</string>
+    <string id="demo_conserva_turn_in_1">
+    		<text>Отлично! Как договаривались, 500 рублей твои.</text>
+	</string>
+    <string id="demo_supplies_offer_0">
+		<text>Ну что, как теперь с продовольствием?</text>
+	</string>
+    <string id="demo_supplies_offer_1">
+		<text>Тушёнка выручила, но это ненадолго. На «Янове» есть бармен Гаваец. Поговори с ним о регулярных поставках.</text>
+	</string>
+    <string id="demo_supplies_offer_2">
+		<text>Хорошо, съезжу на «Янов».</text>
+	</string>
+    <string id="demo_supplies_offer_3">
+		<text>Пока не могу. Зайду позже.</text>
+	</string>
+    <string id="demo_supplies_hawaiian_0">
+		<text>Я от Бороды со «Скадовска». Нужны регулярные поставки еды.</text>
+	</string>
+    <string id="demo_supplies_hawaiian_1">
+		<text>Могу помочь, но организация поставок обойдётся в 2000 рублей.</text>
+	</string>
+    <string id="demo_supplies_hawaiian_2">
+		<text>Согласен. Вот 2000 рублей.</text>
+	</string>
+    <string id="demo_supplies_hawaiian_3">
+		<text>Мне нужно подумать. Вернусь позже.</text>
+	</string>
+    <string id="demo_supplies_report_0">
+		<text>Я договорился с Гавайцем. Поставки теперь налажены.</text>
+	</string>
+    <string id="demo_supplies_report_1">
+		<text>Отличная работа! Теперь «Скадовск» не останется без еды.</text>
+	</string>
+    <string id="demo_conserva_task_title">
+    		<text>Принести пять банок тушёнки</text>
+	</string>
+    <string id="demo_conserva_task_desc">
+    		<text>Борода попросил принести пять банок тушёнки. Награда - 500 рублей.</text>
+	</string>
+    <string id="demo_supplies_go_hawaiian_title">
+		<text>Наладить поставки</text>
+	</string>
+    <string id="demo_supplies_go_hawaiian_desc">
+		<text>Борода попросил договориться с Гавайцем на станции «Янов» о поставках еды на «Скадовск». Гаваец может потребовать плату.</text>
+	</string>
+    <string id="demo_supplies_report_boroda_title">
+		<text>Доложить Бороде</text>
+	</string>
+    <string id="demo_supplies_report_boroda_desc">
+		<text>Гаваец согласился наладить поставки за 2000 рублей. Нужно вернуться к Бороде на «Скадовск».</text>
+	</string>
+</string_table>
