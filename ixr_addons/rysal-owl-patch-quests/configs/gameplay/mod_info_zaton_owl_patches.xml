@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<game_information_portions>
+    <info_portion id="rysal_owl_patch_bandit_started" override="add" />
+    <info_portion id="rysal_owl_patch_bandit_done" override="add" />
+    <info_portion id="rysal_owl_patch_stalker_started" override="add" />
+    <info_portion id="rysal_owl_patch_stalker_done" override="add" />
+    <info_portion id="rysal_owl_patch_freedom_started" override="add" />
+    <info_portion id="rysal_owl_patch_freedom_done" override="add" />
+    <info_portion id="rysal_owl_patch_dolg_started" override="add" />
+    <info_portion id="rysal_owl_patch_dolg_done" override="add" />
+    <info_portion id="rysal_owl_patch_killer_started" override="add" />
+    <info_portion id="rysal_owl_patch_killer_done" override="add" />
+    <info_portion id="rysal_owl_patch_monolith_started" override="add" />
+    <info_portion id="rysal_owl_patch_monolith_done" override="add" />
+</game_information_portions>

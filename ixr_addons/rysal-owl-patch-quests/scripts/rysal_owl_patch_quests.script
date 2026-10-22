@@ -1,0 +1,255 @@
+-- Six independent, repeatable faction patch contracts for Owl (Sych).
+-- Requires the separate rysal-faction-patches addon.
+-- Each completion gives five patches to Owl; task_manager awards money once.
+
+local NEED_COUNT = 5
+local order_names = {"bandit", "stalker", "freedom", "dolg", "killer", "monolith"}
+local orders = {
+    bandit = {
+        item = "rysal_patch_bandit",
+        task = "rysal_owl_patch_bandit_task",
+        started = "rysal_owl_patch_bandit_started",
+        done = "rysal_owl_patch_bandit_done"
+    },
+    stalker = {
+        item = "rysal_patch_stalker",
+        task = "rysal_owl_patch_stalker_task",
+        started = "rysal_owl_patch_stalker_started",
+        done = "rysal_owl_patch_stalker_done"
+    },
+    freedom = {
+        item = "rysal_patch_freedom",
+        task = "rysal_owl_patch_freedom_task",
+        started = "rysal_owl_patch_freedom_started",
+        done = "rysal_owl_patch_freedom_done"
+    },
+    dolg = {
+        item = "rysal_patch_dolg",
+        task = "rysal_owl_patch_dolg_task",
+        started = "rysal_owl_patch_dolg_started",
+        done = "rysal_owl_patch_dolg_done"
+    },
+    killer = {
+        item = "rysal_patch_killer",
+        task = "rysal_owl_patch_killer_task",
+        started = "rysal_owl_patch_killer_started",
+        done = "rysal_owl_patch_killer_done"
+    },
+    monolith = {
+        item = "rysal_patch_monolith",
+        task = "rysal_owl_patch_monolith_task",
+        started = "rysal_owl_patch_monolith_started",
+        done = "rysal_owl_patch_monolith_done"
+    }
+}
+
+local function has_order_started(order)
+    return has_alife_info(order.started)
+end
+
+local function has_order_done(order)
+    return has_alife_info(order.done)
+end
+
+-- Reuse the same task ID only after the previous instance is fully closed.
+-- task_info is released by task_manager.task_callback after completion.
+-- get_task(..., true) additionally checks the game's active task registry.
+local function previous_task_finished(order)
+    local manager = task_manager.get_task_manager()
+
+    return manager.task_info[order.task] == nil
+        and db.actor:get_task(order.task, true) == nil
+end
+
+local function can_accept(id)
+    local order = orders[id]
+    if db.actor == nil or order == nil then
+        return false
+    end
+
+    -- The previous batch was delivered: waiting for task closure/reward.
+    if has_order_done(order) then
+        return previous_task_finished(order)
+    end
+
+    -- Fresh order is available; do not duplicate an ongoing task.
+    return not has_order_started(order)
+        and previous_task_finished(order)
+end
+
+local function item_count(section)
+    if db.actor == nil then
+        return 0
+    end
+
+    local result = 0
+    local function check_item(_, item)
+        if item:section() == section then
+            result = result + 1
+        end
+    end
+
+    db.actor:iterate_inventory(check_item, nil)
+    return result
+end
+
+local function can_turn_in(id)
+    local order = orders[id]
+    return db.actor ~= nil and order ~= nil
+        and has_order_started(order)
+        and not has_order_done(order)
+        and item_count(order.item) >= NEED_COUNT
+end
+
+local function accept(id)
+    if not can_accept(id) then
+        return
+    end
+
+    local order = orders[id]
+
+    -- Reset flags only when the player accepts a NEW cycle, not on delivery:
+    -- clearing "done" at delivery would prevent the previous task's reward.
+    if has_order_done(order) then
+        db.actor:disable_info_portion(order.done)
+    end
+    if has_order_started(order) then
+        db.actor:disable_info_portion(order.started)
+    end
+
+    task_manager.get_task_manager():give_task(order.task)
+    db.actor:give_info_portion(order.started)
+end
+
+local function turn_in(id, first_speaker, second_speaker)
+    if not can_turn_in(id) then
+        return
+    end
+
+    local order = orders[id]
+    dialogs.relocate_item_section_from_actor(
+        first_speaker, second_speaker, order.item, NEED_COUNT
+    )
+    -- The task's reward_money is paid by the game's task_manager.
+    -- Do not give money here too, or the player would be paid twice.
+    db.actor:give_info_portion(order.done)
+end
+
+function has_available_offers(first_speaker, second_speaker)
+    for _, id in ipairs(order_names) do
+        if can_accept(id) then
+            return true
+        end
+    end
+    return false
+end
+
+function has_active_orders(first_speaker, second_speaker)
+    if db.actor == nil then
+        return false
+    end
+
+    for _, id in ipairs(order_names) do
+        local order = orders[id]
+        if has_order_started(order) and not has_order_done(order) then
+            return true
+        end
+    end
+    return false
+end
+
+function can_accept_bandit(first_speaker, second_speaker)
+    return can_accept("bandit")
+end
+
+function accept_bandit(first_speaker, second_speaker)
+    accept("bandit")
+end
+
+function can_turn_in_bandit(first_speaker, second_speaker)
+    return can_turn_in("bandit")
+end
+
+function turn_in_bandit(first_speaker, second_speaker)
+    turn_in("bandit", first_speaker, second_speaker)
+end
+
+function can_accept_stalker(first_speaker, second_speaker)
+    return can_accept("stalker")
+end
+
+function accept_stalker(first_speaker, second_speaker)
+    accept("stalker")
+end
+
+function can_turn_in_stalker(first_speaker, second_speaker)
+    return can_turn_in("stalker")
+end
+
+function turn_in_stalker(first_speaker, second_speaker)
+    turn_in("stalker", first_speaker, second_speaker)
+end
+
+function can_accept_freedom(first_speaker, second_speaker)
+    return can_accept("freedom")
+end
+
+function accept_freedom(first_speaker, second_speaker)
+    accept("freedom")
+end
+
+function can_turn_in_freedom(first_speaker, second_speaker)
+    return can_turn_in("freedom")
+end
+
+function turn_in_freedom(first_speaker, second_speaker)
+    turn_in("freedom", first_speaker, second_speaker)
+end
+
+function can_accept_dolg(first_speaker, second_speaker)
+    return can_accept("dolg")
+end
+
+function accept_dolg(first_speaker, second_speaker)
+    accept("dolg")
+end
+
+function can_turn_in_dolg(first_speaker, second_speaker)
+    return can_turn_in("dolg")
+end
+
+function turn_in_dolg(first_speaker, second_speaker)
+    turn_in("dolg", first_speaker, second_speaker)
+end
+
+function can_accept_killer(first_speaker, second_speaker)
+    return can_accept("killer")
+end
+
+function accept_killer(first_speaker, second_speaker)
+    accept("killer")
+end
+
+function can_turn_in_killer(first_speaker, second_speaker)
+    return can_turn_in("killer")
+end
+
+function turn_in_killer(first_speaker, second_speaker)
+    turn_in("killer", first_speaker, second_speaker)
+end
+
+function can_accept_monolith(first_speaker, second_speaker)
+    return can_accept("monolith")
+end
+
+function accept_monolith(first_speaker, second_speaker)
+    accept("monolith")
+end
+
+function can_turn_in_monolith(first_speaker, second_speaker)
+    return can_turn_in("monolith")
+end
+
+function turn_in_monolith(first_speaker, second_speaker)
+    turn_in("monolith", first_speaker, second_speaker)
+end
