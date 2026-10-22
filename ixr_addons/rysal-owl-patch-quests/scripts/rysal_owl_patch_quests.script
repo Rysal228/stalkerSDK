@@ -2,6 +2,22 @@
 -- Requires the separate rysal-faction-patches addon.
 -- Each completion gives five patches to Owl; task_manager awards money once.
 
+-- These dialogues are listed in the actor's known info portion and
+-- therefore globally visible by default. Only Owl may offer these quests.
+function is_owl(first_speaker, second_speaker)
+    if db.actor == nil then
+        return false
+    end
+
+    local owl_id = get_story_object_id("zat_b30_owl_stalker_trader_id")
+    if owl_id == nil then
+        return false
+    end
+
+    local npc = dialogs.who_is_npc(first_speaker, second_speaker)
+    return npc ~= nil and npc:id() == owl_id
+end
+
 local NEED_COUNT = 5
 local order_names = {"bandit", "stalker", "freedom", "dolg", "killer", "monolith"}
 local orders = {
