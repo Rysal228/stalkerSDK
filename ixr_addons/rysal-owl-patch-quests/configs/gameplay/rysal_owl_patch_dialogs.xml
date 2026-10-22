@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1251"?>
 <game_dialogs>
-    <!-- New, independent dialogue; does not replace Owl's vanilla choices. -->
-    <dialog id="rysal_owl_patch_offer" override="add">
+    <!-- Standalone dialogue registry file registered through DLTX system.ltx. -->
+    <dialog id="rysal_owl_patch_offer">
         <!-- Always expose the entry point; each order has its own precondition.
              This avoids suppressing the entire dialogue before the script
              has been loaded or an older save has reconciled its task state. -->
@@ -56,7 +56,7 @@
         </phrase_list>
     </dialog>
 
-    <dialog id="rysal_owl_patch_turn_in" override="add">
+    <dialog id="rysal_owl_patch_turn_in">
         <precondition>rysal_owl_patch_quests.has_active_orders</precondition>
         <phrase_list>
             <phrase id="0">
