@@ -72,9 +72,9 @@ local function can_accept(id)
         return previous_task_finished(order)
     end
 
-    -- Fresh order is available; do not duplicate an ongoing task.
+    -- A never-taken order has neither flag; always display its offer.
+    -- Only a repeat attempt requires waiting for the old task to close.
     return not has_order_started(order)
-        and previous_task_finished(order)
 end
 
 local function item_count(section)
