@@ -42,9 +42,8 @@
 
 ## Как устроена интеграция
 
-- `configs/gameplay/mod_character_desc_zaton_owl_patches.xml`:
-  XMLOverride с `override="add"` к профилю Сыча
-  `zat_b30_owl_stalker_trader`.
+- `addon.init` + `scripts/rysal_owl_patch_init.script`:
+  регистрация одноразовой выдачи инфопоршня игроку через коллбэк.
 - `configs/mod_system_rysal_owl_xml.ltx` — DLTX к **корневому
   `system.ltx`**, который дополняет списки `[dialogs] files` и
   `[info_portions] files` с помощью `>files`.
@@ -62,11 +61,42 @@
   Lua с проверками инвентаря, выдачей и сдачей заданий.
 
 Ни один штатный XML или скрипт Сыча/Бороды не заменяется.
-XMLOverride должен добавлять дочерние узлы к профилю Сыча по ID,
-но в установленной пользователем сборке эта привязка **не сработала**.
-Поэтому пока нужна временная ручная привязка двух `actor_dialog`
-в активном файле STCOP (см. ниже). **Не трогай исходную `gamedata`.**
+В отличие от предыдущей реализации, **ручное добавление**
+`actor_dialog` в STCOP **не требуется**: диалоги из новой
+инфопоршни актёра ограничены проверкой конкретного NPC.
 Квесты Бороды этот аддон **не изменяет**.
+
+## Без правок STCOP: привязка через инфопоршень игрока
+
+**Начиная с этого исправления менять STCOP и исходную `gamedata` не нужно.**
+При загрузке аддона файл `addon.init` подключает
+`scripts/rysal_owl_patch_init.script`, который регистрирует
+коллбэк `update` (обновление игрока). На первом обновлении актёр
+получает постоянную инфопоршню `rysal_owl_patch_dialogs_enabled`.
+
+Новая инфопоршня в `configs/gameplay/rysal_owl_patch_info.xml`
+содержит два `<dialog>`:
+`rysal_owl_patch_offer` и `rysal_owl_patch_turn_in`.
+Движок `CActor::UpdateAvailableDialogs` автоматически предлагает
+диалоги известных инфопоршней. Чтобы эти реплики не появились
+у всех NPC, оба XML-диалога проверяют
+`rysal_owl_patch_quests.is_owl`, сравнивающий ID собеседника
+с `get_story_object_id("zat_b30_owl_stalker_trader_id")`.
+
+**Перед тестом удали временные две строки**
+`<actor_dialog>rysal_owl_patch_offer</actor_dialog>` и
+`<actor_dialog>rysal_owl_patch_turn_in</actor_dialog>` из
+`ixr_addons/ixray-stcop-wp-3.8-cop/configs/gameplay/character_desc_zaton.xml`.
+Иначе один и тот же диалог может добавиться дважды.
+
+Два прежних файла `mod_dialogs_zaton_owl_patches.xml`,
+`mod_info_zaton_owl_patches.xml` и
+`mod_character_desc_zaton_owl_patches.xml` теперь удалены из аддона.
+**Не оставляй их в папке игры после обновления.**
+
+Важное: модель полностью отделена от квестов Бороды, которые
+по-прежнему располагаются в оригинальной `gamedata`. Никаких
+изменений квестовых состояний или диалогов Бороды не требуется.
 
 ## Установка
 
@@ -75,52 +105,21 @@ XMLOverride должен добавлять дочерние узлы к про�
 `<папка игры>/ixr_addons/` рядом с `rysal-faction-patches/`.
 Перезапустить игру. Патч рассчитан на IX-Ray, не на vanilla X-Ray 1.6.02.
 
-## Если Сыч не показывает новую реплику
+## Если диалог не появился
 
-Появление старого задания Сыча на ноутбук **не означает**, что новый
-аддон загрузился. Список диалогов у торговца формируется из профиля
-`zat_b30_owl_stalker_trader`. Он должен дополниться двумя ID:
-
-```xml
-<actor_dialog>rysal_owl_patch_offer</actor_dialog>
-<actor_dialog>rysal_owl_patch_turn_in</actor_dialog>
-```
-
-XMLOverride из
-`configs/gameplay/mod_character_desc_zaton_owl_patches.xml`
-должен делать это сам, но на текущей сборке STCOP этого не произошло.
-При этом старые `mod_dialogs_zaton_owl_patches.xml` и
-`mod_info_zaton_owl_patches.xml` также не загрузились, что подтверждено
-вылетом `item not found, id: rysal_owl_patch_offer`.
-
-**Исправление в этом выпуске**: новые диалоги и инфопоршни теперь
-регистрируются через DLTX `mod_system_rysal_owl_xml.ltx` в **отдельных
-XML-файлах**, а не через XMLOverride. Верхнеуровневой Lua-проверки
-меню предложений также нет.
-
-Порядок проверки:
-
-1. Убедись, что находятся все файлы `configs/gameplay/*.xml`,
-   `configs/misc/mod_task_manager_owl_patches.ltx`,
-   `configs/text/rus/st_rysal_owl_patch_quests.xml` и
-   `scripts/rysal_owl_patch_quests.script`, а также `addon.init`.
-2. Полностью закрой и заново запусти игру, проверь Сыча.
-3. Если реплика не появилась — **временно** добавь две строки
-   `<actor_dialog>...</actor_dialog>` выше в профиль Сыча
-   `zat_b30_owl_stalker_trader` внутри активного
-   `ixray-stcop-wp-3.8-cop/configs/gameplay/character_desc_zaton.xml`,
-   рядом с обычными `<actor_dialog>`. Предварительно сделай копию
-   этого файла. **Не заменяй весь файл.**
-4. Если ручная привязка помогла — проблема локализована в XMLOverride
-   профиля или приоритете файлов; если нет — проверь, загрузились ли
-   `mod_dialogs_zaton_owl_patches.xml`, локализация и Lua по журналу игры.
-5. При любой ошибке скопируй строки из `_appdata_ixray_/logs/`,
-   содержащие `XML override`, `rysal_owl_patch`, `SCRIPT RUNTIME ERROR`.
-
-Этот временный обход касается **только файла STCOP-аддона**,
-а не оригинальной `gamedata`; остальные квесты Сыча и Бороды
-не нужно редактировать. Пока XMLOverride для профиля Сыча не
-восстановлен, **не убирай эти строки после успешного теста**.
+1. Убедись, что `addon.init` содержит строку
+   `script: rysal_owl_patch_init.script`.
+2. Проверь, что новые файлы `configs/mod_system_rysal_owl_xml.ltx`,
+   `configs/gameplay/rysal_owl_patch_dialogs.xml`,
+   `configs/gameplay/rysal_owl_patch_info.xml` установлены.
+3. Удали все три старых `configs/gameplay/mod_*_owl_patches.xml`;
+   они больше не используются.
+4. Сделай резервную копию сохранения, перезапусти игру,
+   загрузи сохранение, подойди к Сычу. Коллбэк актёра должен
+   выдать инфопоршню для регистрации меню.
+5. Если снова происходит вылет — пришли точную ошибку
+   `GetById` или Lua из игрового лога. Отсутствие меню без
+   вылета означает другую проблему с загрузкой или проверкой NPC.
 
 ## Тестирование в игре (обязательно)
 
