@@ -1,5 +1,5 @@
-; Six independent tasks added through DLTX to misc/task_manager.ltx.
-; This LTX is read by task_manager.script directly, so it is a root file.
+; All custom quest tasks: DLTX for root misc/task_manager.ltx.
+; No changes to included misc/tm_zaton.ltx are required.
 
 [rysal_owl_patch_bandit_task]
 icon = ui_inGame2_Osobiy_zakaz
@@ -60,3 +60,32 @@ descr = rysal_owl_patch_monolith_task_descr
 target = zat_b30_owl_stalker_trader_id
 condlist_0 = {+rysal_owl_patch_monolith_done} complete
 ; Random payout: 5000..10000 RUB (Lua on delivery, not task reward_money).
+
+; Beard / Hawaiian. Original IDs preserved for game saves.
+[demo_conserva_delivery]
+icon = ui_inGame2_Osobiy_zakaz
+prior = 1
+storyline = false
+title = demo_conserva_task_title
+descr = demo_conserva_task_desc
+target = zat_a2_stalker_barmen
+condlist_0 = {+demo_conserva_done} complete
+reward_money = 500
+
+[demo_supplies_go_hawaiian]
+icon = ui_inGame2_Osobiy_zakaz
+prior = 1
+storyline = false
+title = demo_supplies_go_hawaiian_title
+descr = demo_supplies_go_hawaiian_desc
+target = jup_a6_stalker_barmen
+condlist_0 = {+demo_supplies_paid} complete
+
+[demo_supplies_report_boroda]
+icon = ui_inGame2_Osobiy_zakaz
+prior = 1
+storyline = false
+title = demo_supplies_report_boroda_title
+descr = demo_supplies_report_boroda_desc
+target = zat_a2_stalker_barmen
+condlist_0 = {+demo_supplies_done} complete
